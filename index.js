@@ -2,6 +2,8 @@ import 'dotenv/config';
 import { Bot } from "grammy";
 import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 import { run } from "@grammyjs/runner";
+import mainMenu from './menu/main-menu.js';
+import settingKeyboard from './menu/setting.js';
 
 // Create an instance of the `Bot` class and pass your bot token to it.
 const bot = new Bot(process.env.BOT_TOKEN);
@@ -25,7 +27,7 @@ bot.command("start", (ctx) => {
     );
 });
 bot.command("create_user", (ctx) => {
-    ctx.replyWithMarkdownV2("*This* is _withMarkdown_ `formatting`")
+    ctx.replyWithMarkdownV2("*This* is _withMarkdown_ `formatting` HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", { reply_markup: mainMenu })
 });
 // Handle other messages.
 bot.on("message", (ctx) => {
@@ -36,6 +38,24 @@ bot.on("message", (ctx) => {
         "<b>This</b> is <i>withHTML</i> <code>formatting</code><b>This</b> is <i>withHTML</i> <code>formatting</code>",
     );
 });
+
+bot.callbackQuery('option_1', (ctx) => {
+    ctx.replyWithHTML(
+        "<b>This</b> is <i>withHTML</i> <code>formatting</code><b>This</b> is <i>withHTML</i> <code>formatting</code>", { reply_markup: mainMenu }
+    );
+})
+
+bot.callbackQuery('option_2', (ctx) => {
+    ctx.replyWithHTML(
+        "<b>This</b> is <i>withHTML</i> <code>formatting</code><b>This</b> is <i>withHTML</i> <code>formatting</code>", { reply_markup: mainMenu }
+    );
+})
+
+bot.callbackQuery('option_4', (ctx) => {
+    ctx.replyWithHTML(
+        "<b>This</b> is <i>withHTML</i> <code>formatting</code><b>This</b> is <i>withHTML</i> <code>formatting</code>", { reply_markup: settingKeyboard }
+    );
+})
 
 // Now that you specified how to handle messages, you can start your bot.
 // This will connect to the Telegram servers and wait for messages.
